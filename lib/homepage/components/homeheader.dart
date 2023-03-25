@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_now/cart/cartpage.dart';
+import 'package:food_now/cart/cartpage.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class HomeHeader extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-
+            Navigator.pushNamed(context, CartPage.routeName);
           },
           child: Container(
             height: 40,

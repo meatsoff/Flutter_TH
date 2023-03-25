@@ -36,7 +36,7 @@ class _AddProductToCartState extends State<AddProductToCart> {
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.BOTTOM,
                 timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
+                backgroundColor: Colors.pinkAccent,
                 textColor: Colors.white,
                 fontSize: 16,
               );

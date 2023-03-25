@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_now/homepage/components/fragment/home_fragment_categories.dart';
+import 'package:food_now/homepage/components/fragment/home_fragment_product.dart';
 
 class HomeDetail extends StatelessWidget {
   const HomeDetail({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class HomeDetail extends StatelessWidget {
       child: ListView(
         children: [
           CategoriesStore(),
+          ProductPopular(),
         ],
       ),
     );

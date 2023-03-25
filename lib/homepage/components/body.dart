@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_now/homepage/components/fragment/account_detail.dart';
 import 'package:food_now/homepage/components/fragment/home_fragment.dart';
-import 'package:food_now/homepage/components/homeheader.dart';
-import 'menuheader.dart';
+import 'package:food_now/homepage/components/fragment/favorite_fragment.dart';
+import 'package:food_now/homepage/components/fragment/notification_fragment.dart';
 
+
+import 'package:food_now/homepage/components/homeheader.dart';
+import 'package:food_now/model/utilities.dart';
+import 'menuheader.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -19,6 +24,9 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     List<Widget> screen = [
       HomeDetail(),
+      FavoriteDetail(Utilities.data),
+      NotificationDetail(),
+      AccountDetail()
     ];
 
     return Scaffold(

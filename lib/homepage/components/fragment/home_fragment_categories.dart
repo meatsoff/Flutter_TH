@@ -42,7 +42,7 @@ class CategoriesStore extends StatelessWidget {
 class CategoriesItem extends StatelessWidget{
   Categories category;
 
-  CategoriesItem({required this.category});
+  CategoriesItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context){

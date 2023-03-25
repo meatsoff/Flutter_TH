@@ -3,11 +3,11 @@ import 'package:food_now/model/products.dart';
 import 'components/body.dart';
 
 class ProductPage extends StatelessWidget {
-  String routeName = 'details';
+  static String routeName = '/details';
 
   @override
   Widget build(BuildContext context) {
-    final ProductDetailsArguments arguments = ModalRoute.of(context)?.settings.arguments;
+    final ProductDetailsArguments arguments = ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(

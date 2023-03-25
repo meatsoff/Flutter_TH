@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../model/user.dart';
+import '../../model/utilities.dart';
+
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
 
@@ -35,14 +38,15 @@ class _SignUpFormState extends State<SignUpForm> {
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
                 onPressed: (){
-                  // if(_formKey.currentState.validate()){
-                  //   Navigator.pop(context, User(username:email.text, password:confirm.text));
+                  if(_formKey.currentState!.validate()){
+                    Navigator.pop(context, User(username:email.text, password:confirm.text));
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   backgroundColor: Colors.green,
                 ),
-                child: Text('Continue', style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+                child: const Text('Continue', style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
               ),
             ),
             //SizedBox(height: 30,),
@@ -54,8 +58,10 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField emailTextFormField(){
     return TextFormField(
-      // controller: email,
-      // validator: Utilities.validateEmail,
+      controller: email,
+      validator:(emailString) {
+        return Utilities.validateEmail(emailString!);
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
@@ -72,10 +78,10 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField passwordTextFormField(){
     return TextFormField(
       key: _passKey,
-      // controller: password,
-      // validator: (passwordKey) {
-      //  return Utilities.validatePassword(passwordKey);
-      // },
+      controller: password,
+      validator: (passwordKey) {
+       return Utilities.validatePassword(passwordKey!);
+      },
       obscureText: true,
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
@@ -89,11 +95,11 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField confirmTextFormField(){
     return TextFormField(
-      // controller: confirm,
-      // validator: (confirmPassword) {
-      //  var pass = _passKey.currentState.value;
-      //  return Utilities.confirmPassword(confirmPassword, pass);
-      // },
+      controller: confirm,
+      validator: (confirmPassword) {
+       var pass = _passKey.currentState?.value;
+       return Utilities.confirmPassword(confirmPassword!, pass);
+      },
       obscureText: true,
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(

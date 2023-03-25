@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:food_now/model/products.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../detail/productpage.dart';
+import '../../../model/utilities.dart';
+
 
 
 class ProductPopular extends StatelessWidget {
@@ -30,10 +33,15 @@ class ProductPopular extends StatelessWidget {
               shrinkWrap: true,
               primary: false,
               itemCount: products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 0.8,
+              ),
               itemBuilder: (context, index){
                 return ProductItem(
-                  products: products[index],
+                  product: products[index],
                 );
               },
             ),
@@ -50,7 +58,41 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    if(product.image!=null){
+
+    }
+    return GestureDetector(
+      onTap: (){
+        Utilities.data.add(product);
+        Navigator.pushNamed(context, ProductPage.routeName,
+            arguments: ProductDetailsArguments(product: product));
+      },
+      
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: [
+          Image.network(product.image,fit: BoxFit.fill,
+          ),
+          Row(
+            children: [
+              Expanded(child: Text(product.title)),
+              Container(
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(2),
+                    color: Colors.green
+                ),
+                child: Text(product.price.toString(),style: const TextStyle(
+                    color: Colors.white,fontWeight: FontWeight.bold
+                ),),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 
