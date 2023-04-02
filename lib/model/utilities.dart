@@ -6,30 +6,32 @@ import 'products.dart';
 import 'package:quiver/strings.dart';
 
 class Utilities{
-  String url ="http://192.168.0.100:3000/api/food";
+  String url = "http://localhost:5000/foods";
   static List<Products> data =[];
 
   Future<List<Products>> getProducts() async{
     var res= await http.get(Uri.parse(url));
     if(res.statusCode==200){
-      var content =res.body;
+      var content = res.body;
       print(content.toString());
-      var arr =json.decode(content)['food'] as List;
-
-      return arr.map((e) => _fromJson(e)).toList();
+      var arr = json.decode(content)['food'] as List;
+      return arr.map((e) {
+        return Products.fromJson(e);
+      }).toList();
+    } else{
+      throw Exception("Can't get products");
     }
-    return [];
-    //return List<Products>();
   }
 
-  Products _fromJson(Map<String,dynamic>item){
-    return Products(
-        id: item['id'],
-        title: item['title'],
-        description: item['description'],
-        image: item['image'],
-        price: double.parse(item['price']));
-  }
+  // Products _fromJson(Map<String,dynamic> item){
+  //   return Products(
+  //       id: item['_id'],
+  //       title: item['title'],
+  //       description: item['description'],
+  //       image: item['image'],
+  //       price: double.parse(item['price'])
+  //   );
+  // }
 
   static String validateEmail(String value){
     if(value.isEmpty){

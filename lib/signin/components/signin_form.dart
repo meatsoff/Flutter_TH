@@ -33,6 +33,7 @@ class _SignInFormState extends State<SignInForm> {
 
   _getData() async{
     prefs = await SharedPreferences.getInstance();
+    if(prefs.getString("username") == null) return;
     if(!prefs.getString('username').isEmpty){
       username.text = prefs.getString('username');
       password.text = prefs.getString('password');
